@@ -15,18 +15,38 @@ Site de prezentare single-page pentru EVO Studio: păr, unghii, îngrijirea feț
 - **Backend** (`packages/api`): placeholder Node.js, rezervat pentru o viitoare integrare cu CRM
 - **Tooling:** ESLint · Prettier · Commitlint · Husky + lint-staged
 
-## Cerințe
+## Pornire rapidă
 
-- **Node.js** `>= 22`
+### Varianta A — Docker (recomandat)
+
+Necesită [Docker Desktop](https://www.docker.com/products/docker-desktop/). Totul rulează într-un container Node 22 — nu este nevoie de Node/Yarn pe sistemul local.
+
+```bash
+git clone https://github.com/inicula1989ro/sandbox.git
+cd sandbox
+docker compose up
+```
+
+Serverul de dezvoltare este disponibil la **[http://localhost:5174](http://localhost:5174)** (portul `5174` pe host → portul `5173` în container). Hot-reload funcționează prin polling.
+
+Comenzi utile:
+
+```bash
+docker compose up -d          # pornește în fundal
+docker compose logs -f web    # afișează log-urile
+docker compose down           # oprește (păstrează volumele — install-ul următor e instant)
+docker compose down -v        # oprește și resetează volumele (forțează un install curat)
+```
+
+### Varianta B — Node local
+
+Cerințe:
+
+- **Node.js** `>= 22` (Node 25+ este incompatibil cu linker-ul implicit al Yarn)
 - **Yarn** `4.9.1` (activat prin `corepack`)
 
 ```bash
 corepack enable
-```
-
-## Pornire rapidă
-
-```bash
 git clone https://github.com/inicula1989ro/sandbox.git
 cd sandbox
 yarn install

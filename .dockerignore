@@ -1,0 +1,14 @@
+node_modules
+.yarn/cache
+.yarn/install-state.gz
+.yarn/unplugged
+.pnp.*
+.git
+.idea
+.vscode
+.DS_Store
+dist
+build
+*.log
+*.tar.gz
+evo-studio.tar.gz

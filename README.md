@@ -15,18 +15,38 @@ Single-page marketing site for EVO Studio: hair, nails, skincare, brows & lashes
 - **Backend** (`packages/api`): Node.js placeholder, reserved for a future CRM integration layer
 - **Tooling:** ESLint · Prettier · Commitlint · Husky + lint-staged
 
-## Requirements
+## Getting Started
 
-- **Node.js** `>= 22`
+### Option A — Docker (recommended)
+
+Requires [Docker Desktop](https://www.docker.com/products/docker-desktop/). Everything runs in a Node 22 container — no local Node/Yarn needed.
+
+```bash
+git clone https://github.com/inicula1989ro/sandbox.git
+cd sandbox
+docker compose up
+```
+
+The dev server is available at **[http://localhost:5174](http://localhost:5174)** (host port `5174` → container port `5173`). Hot-reload works via file polling.
+
+Useful commands:
+
+```bash
+docker compose up -d          # start in background
+docker compose logs -f web    # tail logs
+docker compose down           # stop (keeps volumes — next install is instant)
+docker compose down -v        # stop and reset volumes (forces a fresh install)
+```
+
+### Option B — Local Node
+
+Requirements:
+
+- **Node.js** `>= 22` (Node 25+ is not compatible with Yarn's default linker)
 - **Yarn** `4.9.1` (enabled via `corepack`)
 
 ```bash
 corepack enable
-```
-
-## Getting Started
-
-```bash
 git clone https://github.com/inicula1989ro/sandbox.git
 cd sandbox
 yarn install
