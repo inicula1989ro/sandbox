@@ -28,7 +28,7 @@ export function SpecialistsSection() {
       <Grid container spacing={4} sx={{ justifyContent: 'center' }}>
         {items.map((item, index) => (
           <Grid key={item.name} size={{ xs: 12, sm: 6, md: 3 }}>
-            <Reveal delay={index * 120} sx={{ height: '100%' }}>
+            <Reveal delay={index * 140} direction="right" distance={80} sx={{ height: '100%' }}>
               <Box
                 sx={{
                   p: 4,

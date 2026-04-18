@@ -1,8 +1,6 @@
-import BrushIcon from '@mui/icons-material/Brush'
 import ContentCutIcon from '@mui/icons-material/ContentCut'
 import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural'
 import SpaIcon from '@mui/icons-material/Spa'
-import VisibilityIcon from '@mui/icons-material/Visibility'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Stack from '@mui/material/Stack'
@@ -13,12 +11,14 @@ import { useTranslation } from 'react-i18next'
 
 import { Section } from '@/components/layout'
 import { Reveal, SectionHeader } from '@/components/ui'
+import { BrowLashIcon } from '@/components/ui/icons/brow-lash-icon'
+import { NailIcon } from '@/components/ui/icons/nail-icon'
 
 const CATEGORIES: { key: string; icon: ReactNode }[] = [
   { key: 'hair', icon: <ContentCutIcon fontSize="large" /> },
-  { key: 'nails', icon: <BrushIcon fontSize="large" /> },
+  { key: 'nails', icon: <NailIcon fontSize="large" /> },
   { key: 'face', icon: <FaceRetouchingNaturalIcon fontSize="large" /> },
-  { key: 'brows', icon: <VisibilityIcon fontSize="large" /> },
+  { key: 'brows', icon: <BrowLashIcon fontSize="large" /> },
   { key: 'body', icon: <SpaIcon fontSize="large" /> },
 ]
 
@@ -35,7 +35,7 @@ export function ServicesSection() {
       <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
         {CATEGORIES.map(({ key, icon }, index) => (
           <Grid key={key} size={{ xs: 12, sm: 6, md: 4, lg: 2.4 }}>
-            <Reveal delay={index * 120} sx={{ height: '100%' }}>
+            <Reveal delay={index * 140} direction="right" distance={80} sx={{ height: '100%' }}>
               <Box
                 sx={{
                   p: 4,
