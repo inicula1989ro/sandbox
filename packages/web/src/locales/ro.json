@@ -1,0 +1,121 @@
+{
+  "brand": {
+    "name": "EVO Studio",
+    "tagline": "Frumusețea în detalii"
+  },
+  "nav": {
+    "services": "Servicii",
+    "pricing": "Prețuri",
+    "specialists": "Specialiști",
+    "contact": "Contact",
+    "book": "Programare"
+  },
+  "hero": {
+    "tagline": "Frumusețea în detalii",
+    "cta": "Programare online"
+  },
+  "services": {
+    "overline": "EVO Studio",
+    "title": "Servicii",
+    "subtitle": "Cinci direcții de frumusețe și îngrijire, conduse de profesioniști cu experiență.",
+    "items": {
+      "hair": { "title": "Păr", "description": "Tunsori, vopsit, coafuri și tratamente" },
+      "nails": { "title": "Unghii", "description": "Manichiură, pedichiură, gel și design" },
+      "face": { "title": "Ten", "description": "Curățare, peeling, ritualuri de îngrijire" },
+      "brows": { "title": "Sprâncene și gene", "description": "Corectare, vopsit, laminare" },
+      "body": { "title": "Corp", "description": "Masaj, împachetări, îngrijire corporală" }
+    }
+  },
+  "pricing": {
+    "overline": "Prețuri transparente",
+    "title": "PREȚURI",
+    "subtitleByCategory": {
+      "brows": "sprâncene",
+      "hair": "păr",
+      "nails": "unghii",
+      "face": "ten",
+      "body": "corp"
+    },
+    "currency": "lei",
+    "cta": "Programare online",
+    "categories": {
+      "brows": {
+        "title": "Sprâncene și gene",
+        "items": [
+          { "service": "Vopsit (vopsea/henna + corectare)", "price": "300" },
+          { "service": "Laminare + corectare + vopsit", "price": "400" },
+          { "service": "Laminare + corectare", "price": "350" },
+          { "service": "Corectare (pensetă/ceară)", "price": "150" },
+          { "service": "SPA / botox pentru sprâncene", "price": "100" },
+          { "service": "Epilare facială (o zonă)", "price": "50" }
+        ]
+      },
+      "hair": {
+        "title": "Păr",
+        "items": [
+          { "service": "Tuns", "price": "de la 250" },
+          { "service": "Vopsit", "price": "de la 600" },
+          { "service": "Coafat", "price": "de la 200" },
+          { "service": "Tratament de întreținere", "price": "de la 400" }
+        ]
+      },
+      "nails": {
+        "title": "Unghii",
+        "items": [
+          { "service": "Manichiură clasică", "price": "de la 300" },
+          { "service": "Manichiură + gel lac", "price": "de la 450" },
+          { "service": "Pedichiură", "price": "de la 400" },
+          { "service": "Design (pe unghie)", "price": "de la 30" }
+        ]
+      },
+      "face": {
+        "title": "Ten",
+        "items": [
+          { "service": "Curățare facială", "price": "de la 450" },
+          { "service": "Peeling", "price": "de la 500" },
+          { "service": "Ritual de îngrijire", "price": "de la 600" }
+        ]
+      },
+      "body": {
+        "title": "Corp",
+        "items": [
+          { "service": "Masaj clasic (60 min)", "price": "de la 500" },
+          { "service": "Împachetare", "price": "de la 450" }
+        ]
+      }
+    }
+  },
+  "specialists": {
+    "overline": "Echipa noastră",
+    "title": "Specialiști",
+    "subtitle": "Profesioniști care fac fiecare vizită specială.",
+    "cta": "Programare",
+    "items": [
+      { "name": "Ana M.", "role": "Stilist păr" },
+      { "name": "Elena R.", "role": "Manichiuristă" },
+      { "name": "Victoria P.", "role": "Cosmetolog" },
+      { "name": "Cristina D.", "role": "Specialist sprâncene și gene" }
+    ]
+  },
+  "contact": {
+    "overline": "Ia legătura",
+    "title": "Contact",
+    "addressLabel": "Adresă",
+    "address": "str. Nicolae Starostenco 25, Chișinău",
+    "hoursLabel": "Program",
+    "hours": "Lun — Sâm: 9:00 — 20:00",
+    "phoneLabel": "Telefon",
+    "phone": "+373 000 000 000",
+    "socialLabel": "Rețele",
+    "cta": "Programare online"
+  },
+  "footer": {
+    "copyright": "© 2026 EVO Studio. Toate drepturile rezervate."
+  },
+  "language": {
+    "ru": "RU",
+    "ro": "RO",
+    "en": "EN",
+    "label": "Limbă"
+  }
+}
