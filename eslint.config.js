@@ -62,23 +62,6 @@ export default defineConfig([
     },
   },
 
-  // API package (Node backend — placeholder)
-  {
-    files: ['packages/api/src/**/*.ts'],
-    extends: [js.configs.recommended, tseslint.configs.strict],
-    languageOptions: {
-      ecmaVersion: 2023,
-      globals: globals.node,
-      parserOptions: {
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-    rules: {
-      ...sharedRules,
-    },
-  },
-
   // Node-side config/tooling files (vite.config, eslint.config, etc.)
   {
     files: ['*.config.{js,ts,mjs}', 'packages/*/vite.config.ts', 'commitlint.config.js'],

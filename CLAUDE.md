@@ -4,9 +4,7 @@ Premium beauty salon website — Chisinau, Moldova.
 
 ## Stack
 
-- **Monorepo:** yarn workspaces (`packages/web`, `packages/api`)
 - **Frontend:** Vite + React 19 + TypeScript strict + MUI v9
-- **Data:** React Query v5 + Axios
 - **Routing:** React Router v7
 
 ## Commands
@@ -32,10 +30,10 @@ packages/web/src/
 │   └── layout/   # Structural (Header, Footer, Section)
 ├── features/     # Business features (hero, services, booking)
 ├── hooks/        # Custom React hooks
-├── lib/          # Axios instance, query client, utilities
+├── lib/          # Utilities
 ├── styles/       # MUI theme, global styles
 ├── types/        # Shared TypeScript types
-└── constants/    # Copy (UI strings), config, query keys
+└── constants/    # Copy (UI strings), config
 ```
 
 ## Coding Conventions

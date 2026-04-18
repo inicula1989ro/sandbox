@@ -38,13 +38,6 @@ Atomic components in `src/components/ui/`:
 
 `src/components/layout/` — Header, Footer, Section wrappers.
 
-## Data Layer
-
-- Axios instance: `src/lib/axios.ts` — pre-configured with base URL
-- Query client: `src/lib/query-client.ts` — 5min stale time
-- Query hooks: `src/hooks/use*.ts`
-- Query keys: `src/constants/query-keys.ts`
-
 ## Assets
 
 - Place images in `src/assets/`
