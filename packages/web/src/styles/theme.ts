@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles'
+import { createTheme, alpha } from '@mui/material/styles'
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -9,20 +9,22 @@ declare module '@mui/material/styles' {
   }
 }
 
+const PINK = '#E91E63'
+const BRAND = '#E7B5C0'
+const BG_DEFAULT = '#0A0A0A'
+const BG_PAPER = '#141414'
+const TEXT_PRIMARY = '#F5F5F5'
+const TEXT_SECONDARY = '#A0A0A0'
+
 export const theme = createTheme({
   palette: {
-    primary: {
-      main: '#E91E63',
-    },
-    background: {
-      default: '#FFFFFF',
-      paper: '#F5E6EA',
-    },
-    text: {
-      primary: '#2B2B2B',
-    },
+    mode: 'dark',
+    primary: { main: PINK, contrastText: '#FFFFFF' },
+    background: { default: BG_DEFAULT, paper: BG_PAPER },
+    text: { primary: TEXT_PRIMARY, secondary: TEXT_SECONDARY },
+    divider: alpha(BRAND, 0.2),
     brand: {
-      main: '#E7B5C0',
+      main: BRAND,
       light: '#F5E6EA',
       dark: '#D4919F',
       contrastText: '#2B2B2B',
@@ -33,18 +35,22 @@ export const theme = createTheme({
     h1: {
       fontFamily: '"Playfair Display", serif',
       fontWeight: 700,
+      letterSpacing: '0.04em',
     },
     h2: {
       fontFamily: '"Playfair Display", serif',
-      fontWeight: 600,
+      fontWeight: 700,
+      letterSpacing: '0.06em',
+      textTransform: 'uppercase',
     },
     h3: {
       fontFamily: '"Playfair Display", serif',
       fontWeight: 600,
+      letterSpacing: '0.04em',
     },
     h4: {
       fontFamily: '"Playfair Display", serif',
-      fontWeight: 500,
+      fontWeight: 600,
     },
     h5: {
       fontFamily: '"Playfair Display", serif',
@@ -55,13 +61,13 @@ export const theme = createTheme({
       fontWeight: 500,
     },
     body1: {
-      fontFamily: '"Cormorant Garamond", "Georgia", serif',
-      fontSize: '1.125rem',
+      fontFamily: '"Inter", "Helvetica", "Arial", sans-serif',
+      fontSize: '1rem',
       lineHeight: 1.7,
     },
     body2: {
-      fontFamily: '"Cormorant Garamond", "Georgia", serif',
-      fontSize: '1rem',
+      fontFamily: '"Inter", "Helvetica", "Arial", sans-serif',
+      fontSize: '0.9375rem',
       lineHeight: 1.6,
     },
     overline: {
@@ -72,34 +78,66 @@ export const theme = createTheme({
       textTransform: 'uppercase' as const,
       lineHeight: 1.5,
     },
-    subtitle2: {
-      fontFamily: '"Inter", "Helvetica", "Arial", sans-serif',
-      fontSize: '0.9375rem',
-      fontWeight: 400,
-      lineHeight: 1.6,
-    },
     button: {
+      fontFamily: '"Inter", "Helvetica", "Arial", sans-serif',
       textTransform: 'none',
       fontWeight: 600,
+      letterSpacing: '0.05em',
     },
   },
   shape: {
-    borderRadius: 12,
+    borderRadius: 4,
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        html: { scrollBehavior: 'smooth' },
+        body: { backgroundColor: BG_DEFAULT, color: TEXT_PRIMARY },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 24,
+          borderRadius: 2,
           padding: '12px 32px',
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
         },
       },
     },
-    MuiCssBaseline: {
+    MuiAppBar: {
+      defaultProps: { elevation: 0 },
       styleOverrides: {
-        html: {
-          scrollBehavior: 'smooth',
+        root: { backgroundImage: 'none' },
+      },
+    },
+    MuiAccordion: {
+      defaultProps: { elevation: 0, disableGutters: true, square: true },
+      styleOverrides: {
+        root: {
+          backgroundColor: 'transparent',
+          borderBottom: `1px solid ${alpha(BRAND, 0.2)}`,
+          '&:before': { display: 'none' },
+          '&.Mui-expanded': { margin: 0 },
         },
+      },
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: {
+          padding: '16px 0',
+          minHeight: 'unset',
+          '&.Mui-expanded': { minHeight: 'unset' },
+        },
+        content: {
+          margin: 0,
+          '&.Mui-expanded': { margin: 0 },
+        },
+      },
+    },
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: { padding: '8px 0 24px 0' },
       },
     },
   },
