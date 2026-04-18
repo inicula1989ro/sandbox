@@ -1,116 +1,81 @@
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
+import Stack from '@mui/material/Stack'
+import { alpha, useTheme } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
-import { copy } from '@/constants/copy'
-import { useInView } from '@/hooks/use-in-view'
-import { fadeInUpKeyframes } from '@/styles/animations'
+import { Section } from '@/components/layout'
+import { BrandButton, CornerFlourish, HeartDivider, SectionHeader } from '@/components/ui'
+import { BOOKING_URL } from '@/constants/links'
 
-import { PriceRow } from './price-row'
+import { PricingAccordion } from './pricing-accordion'
+
+type CategoryKey = 'brows' | 'hair' | 'nails' | 'face' | 'body'
 
 export function PricingSection() {
-  const { ref, inView } = useInView({ threshold: 0.1 })
+  const theme = useTheme()
+  const { t } = useTranslation()
+  const [activeCategory, setActiveCategory] = useState<CategoryKey>('brows')
 
   return (
-    <Box
-      id="prices"
-      component="section"
-      sx={{
-        scrollMarginTop: { xs: '64px', md: '72px' },
-        bgcolor: 'background.paper',
-        py: { xs: 10, md: 15 },
-        px: { xs: 3, sm: 4, md: 5 },
-      }}
-    >
+    <Section id="pricing" maxWidth="md">
       <Box
         sx={{
-          maxWidth: 720,
-          mx: 'auto',
+          position: 'relative',
+          border: `1px solid ${alpha(theme.palette.brand.main, 0.25)}`,
+          backgroundColor: alpha('#000000', 0.4),
+          px: { xs: 3, md: 8 },
+          py: { xs: 6, md: 10 },
+          overflow: 'hidden',
         }}
       >
-        {/* Section header */}
-        <Box
-          sx={{
-            textAlign: 'center',
-            mb: { xs: 6, md: 8 },
-            ...fadeInUpKeyframes,
-            '@media (prefers-reduced-motion: no-preference)': inView
-              ? {
-                  animation: 'fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) both',
-                }
-              : {},
-            opacity: inView ? undefined : 0,
-          }}
-        >
-          <Typography variant="overline" sx={{ color: 'primary.main', display: 'block', mb: 1.5 }}>
-            {copy.pricing.overline}
-          </Typography>
+        <CornerFlourish corner="tl" size={140} />
+        <CornerFlourish corner="tr" size={140} />
+        <CornerFlourish corner="bl" size={140} />
+        <CornerFlourish corner="br" size={140} />
 
+        <Stack sx={{ gap: 1, alignItems: 'center', mb: 4, position: 'relative', zIndex: 1 }}>
+          <Typography variant="overline" sx={{ color: 'brand.main' }}>
+            {t('pricing.overline')}
+          </Typography>
+          <Typography variant="h2" sx={{ color: 'text.primary' }}>
+            {t('pricing.title')}
+          </Typography>
           <Typography
-            variant="h2"
             sx={{
-              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-              mb: 2,
+              fontFamily: '"Cormorant Garamond", serif',
+              fontStyle: 'italic',
+              fontSize: { xs: '2rem', md: '2.75rem' },
+              color: 'brand.main',
+              lineHeight: 1,
+              mt: 1,
             }}
           >
-            {copy.pricing.title}
+            {t(`pricing.subtitleByCategory.${activeCategory}`)}
           </Typography>
+        </Stack>
 
-          <Typography
-            variant="subtitle2"
-            sx={{
-              opacity: 0.7,
-              maxWidth: 440,
-              mx: 'auto',
-            }}
+        <SectionHeader title="" sx={{ mb: 0, display: 'none' }} />
+
+        <Box sx={{ position: 'relative', zIndex: 1 }}>
+          <PricingAccordion onCategoryChange={(key) => setActiveCategory(key as CategoryKey)} />
+        </Box>
+
+        <HeartDivider />
+
+        <Stack sx={{ flexDirection: 'row', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
+          <BrandButton
+            component="a"
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            size="large"
           >
-            {copy.pricing.subtitle}
-          </Typography>
-        </Box>
-
-        {/* Price list */}
-        <Box ref={ref} role="list" sx={{ mb: { xs: 5, md: 6 } }}>
-          {copy.pricing.items.map((item, index) => (
-            <PriceRow
-              key={item.service}
-              service={item.service}
-              price={item.price}
-              index={index}
-              animate={inView}
-            />
-          ))}
-        </Box>
-
-        {/* CTA */}
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            ...fadeInUpKeyframes,
-            '@media (prefers-reduced-motion: no-preference)': inView
-              ? {
-                  animation: `fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) ${copy.pricing.items.length * 0.08 + 0.1}s both`,
-                }
-              : {},
-            opacity: inView ? undefined : 0,
-          }}
-        >
-          <Button
-            variant="outlined"
-            href="#book"
-            sx={{
-              borderColor: 'text.primary',
-              color: 'text.primary',
-              '&:hover': {
-                borderColor: 'text.primary',
-                bgcolor: 'rgba(43, 43, 43, 0.06)',
-              },
-            }}
-          >
-            {copy.pricing.cta}
-          </Button>
-        </Box>
+            {t('pricing.cta')}
+          </BrandButton>
+        </Stack>
       </Box>
-    </Box>
+    </Section>
   )
 }
