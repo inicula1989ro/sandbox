@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Section } from '@/components/layout'
-import { BrandButton, CornerFlourish, HeartDivider, SectionHeader } from '@/components/ui'
+import { BrandButton, HeartDivider } from '@/components/ui'
 import { BOOKING_URL } from '@/constants/links'
 
 import { PricingAccordion } from './pricing-accordion'
@@ -30,11 +30,6 @@ export function PricingSection() {
           overflow: 'hidden',
         }}
       >
-        <CornerFlourish corner="tl" size={140} />
-        <CornerFlourish corner="tr" size={140} />
-        <CornerFlourish corner="bl" size={140} />
-        <CornerFlourish corner="br" size={140} />
-
         <Stack sx={{ gap: 1, alignItems: 'center', mb: 4, position: 'relative', zIndex: 1 }}>
           <Typography variant="overline" sx={{ color: 'brand.main' }}>
             {t('pricing.overline')}
@@ -55,8 +50,6 @@ export function PricingSection() {
             {t(`pricing.subtitleByCategory.${activeCategory}`)}
           </Typography>
         </Stack>
-
-        <SectionHeader title="" sx={{ mb: 0, display: 'none' }} />
 
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <PricingAccordion onCategoryChange={(key) => setActiveCategory(key as CategoryKey)} />

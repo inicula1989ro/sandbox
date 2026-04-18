@@ -3,14 +3,18 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { useTranslation } from 'react-i18next'
 
-import { BrandButton, CornerFlourish, EvoLogo } from '@/components/ui'
+import { BrandButton, EvoLogo } from '@/components/ui'
 import { BOOKING_URL } from '@/constants/links'
+import { useScrollPosition } from '@/hooks/use-scroll-position'
 
 const HERO_IMAGE_URL =
   'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=2400&q=80'
 
+const PARALLAX_FACTOR = 0.4
+
 export function HeroSection() {
   const { t } = useTranslation()
+  const { scrollY } = useScrollPosition()
 
   return (
     <Box
@@ -23,18 +27,25 @@ export function HeroSection() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundImage: `linear-gradient(rgba(10,10,10,0.65), rgba(10,10,10,0.85)), url(${HERO_IMAGE_URL})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
+        backgroundColor: 'background.default',
         overflow: 'hidden',
       }}
     >
-      <CornerFlourish corner="tl" size={220} />
-      <CornerFlourish corner="tr" size={220} />
-      <CornerFlourish corner="bl" size={220} />
-      <CornerFlourish corner="br" size={220} />
-
+      <Box
+        aria-hidden
+        sx={{
+          position: 'absolute',
+          inset: 0,
+          top: '-10%',
+          height: '120%',
+          backgroundImage: `linear-gradient(rgba(10,10,10,0.65), rgba(10,10,10,0.85)), url(${HERO_IMAGE_URL})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          transform: `translate3d(0, ${scrollY * PARALLAX_FACTOR}px, 0)`,
+          willChange: 'transform',
+        }}
+      />
       <Stack
         sx={{
           gap: 4,
