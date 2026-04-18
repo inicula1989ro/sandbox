@@ -1,98 +1,69 @@
 import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import Stack from '@mui/material/Stack'
+import { alpha, useTheme } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
+import { useTranslation } from 'react-i18next'
 
-import specialist1 from '@/assets/specialist-1.jpg'
-import specialist2 from '@/assets/specialist-2.jpg'
-import specialist3 from '@/assets/specialist-3.jpg'
-import specialist4 from '@/assets/specialist-4.jpg'
-import { copy } from '@/constants/copy'
-import { useInView } from '@/hooks/use-in-view'
-import { fadeInUpKeyframes } from '@/styles/animations'
+import { Section } from '@/components/layout'
+import { BrandButton, SectionHeader, SpecialistAvatar } from '@/components/ui'
+import { BOOKING_URL } from '@/constants/links'
 
-import { SpecialistCard } from './specialist-card'
-
-const specialistImages = [specialist1, specialist2, specialist3, specialist4]
+interface SpecialistItem {
+  name: string
+  role: string
+}
 
 export function SpecialistsSection() {
-  const { ref, inView } = useInView({ threshold: 0.1 })
+  const theme = useTheme()
+  const { t } = useTranslation()
+  const items = t('specialists.items', { returnObjects: true }) as SpecialistItem[]
 
   return (
-    <Box
-      id="specialists"
-      component="section"
-      sx={{
-        scrollMarginTop: { xs: '64px', md: '72px' },
-        bgcolor: 'common.white',
-        py: { xs: 10, md: 15 },
-        px: { xs: 3, sm: 4, md: 5 },
-      }}
-    >
-      <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
-        {/* Section header */}
-        <Box
-          sx={{
-            textAlign: 'center',
-            mb: { xs: 6, md: 8 },
-            ...fadeInUpKeyframes,
-            '@media (prefers-reduced-motion: no-preference)': inView
-              ? {
-                  animation: 'fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) both',
-                }
-              : {},
-            opacity: inView ? undefined : 0,
-          }}
-        >
-          <Typography variant="overline" sx={{ color: 'primary.main', display: 'block', mb: 1.5 }}>
-            {copy.specialists.overline}
-          </Typography>
-
-          <Typography
-            variant="h2"
-            sx={{
-              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-              mb: 2,
-            }}
-          >
-            {copy.specialists.title}
-          </Typography>
-
-          <Typography
-            variant="subtitle2"
-            sx={{
-              opacity: 0.7,
-              maxWidth: 480,
-              mx: 'auto',
-            }}
-          >
-            {copy.specialists.subtitle}
-          </Typography>
-        </Box>
-
-        {/* Specialists grid */}
-        <Box
-          ref={ref}
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: {
-              xs: 'repeat(2, 1fr)',
-              md: 'repeat(3, 1fr)',
-              lg: 'repeat(4, 1fr)',
-            },
-            gap: { xs: 3, md: 4 },
-          }}
-        >
-          {copy.specialists.items.map((item, index) => (
-            <SpecialistCard
-              key={item.name}
-              name={item.name}
-              specialization={item.specialization}
-              image={specialistImages[index] ?? ''}
-              index={index}
-              animate={inView}
-            />
-          ))}
-        </Box>
-      </Box>
-    </Box>
+    <Section id="specialists">
+      <SectionHeader overline={t('specialists.overline')} title={t('specialists.title')} />
+      <Typography sx={{ color: 'text.secondary', textAlign: 'center', mb: 6, maxWidth: 640, mx: 'auto' }}>
+        {t('specialists.subtitle')}
+      </Typography>
+      <Grid container spacing={4} sx={{ justifyContent: 'center' }}>
+        {items.map((item) => (
+          <Grid key={item.name} size={{ xs: 12, sm: 6, md: 3 }}>
+            <Box
+              sx={{
+                p: 4,
+                height: '100%',
+                textAlign: 'center',
+                border: `1px solid ${alpha(theme.palette.brand.main, 0.2)}`,
+                backgroundColor: 'background.paper',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  borderColor: alpha(theme.palette.brand.main, 0.6),
+                },
+              }}
+            >
+              <Stack sx={{ gap: 2, alignItems: 'center' }}>
+                <SpecialistAvatar name={item.name} size={140} />
+                <Typography variant="h5" sx={{ color: 'text.primary' }}>
+                  {item.name}
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  {item.role}
+                </Typography>
+                <BrandButton
+                  component="a"
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="outlined"
+                  size="small"
+                >
+                  {t('specialists.cta')}
+                </BrandButton>
+              </Stack>
+            </Box>
+          </Grid>
+        ))}
+      </Grid>
+    </Section>
   )
 }
