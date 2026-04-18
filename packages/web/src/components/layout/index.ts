@@ -1,6 +1,4 @@
 export { Footer } from './footer'
 export { Header } from './header'
-export { MobileMenu } from './mobile-menu'
-export type { MobileMenuProps } from './mobile-menu'
-export { SectionPlaceholder } from './section-placeholder'
-export type { SectionPlaceholderProps } from './section-placeholder'
+export { Section } from './section'
+export type { SectionProps } from './section'

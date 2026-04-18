@@ -1,132 +1,128 @@
 import MenuIcon from '@mui/icons-material/Menu'
+import CloseIcon from '@mui/icons-material/Close'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
+import Drawer from '@mui/material/Drawer'
 import IconButton from '@mui/material/IconButton'
+import Link from '@mui/material/Link'
+import Stack from '@mui/material/Stack'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import { useState } from 'react'
+import { alpha, useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
-import logo from '@/assets/logo.png'
-import { MobileMenu } from '@/components/layout/mobile-menu'
-import { copy } from '@/constants/copy'
-import { useScrollPosition } from '@/hooks/use-scroll-position'
+import { BrandButton, EvoLogo, LanguageSwitcher } from '@/components/ui'
+import { BOOKING_URL } from '@/constants/links'
 
-const navItems = Object.entries(copy.nav).map(([key, label]) => ({
-  key,
-  label,
-  href: `#${key}`,
-}))
+const NAV_ITEMS = ['services', 'pricing', 'specialists', 'contact'] as const
 
 export function Header() {
-  const { isScrolled } = useScrollPosition()
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const theme = useTheme()
+  const { t } = useTranslation()
+  const [scrolled, setScrolled] = useState(false)
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
+
+  useEffect(() => {
+    function handleScroll() {
+      setScrolled(window.scrollY > 40)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  function closeDrawer() {
+    setDrawerOpen(false)
+  }
+
+  const navLinks = NAV_ITEMS.map((item) => (
+    <Link
+      key={item}
+      href={`#${item}`}
+      underline="none"
+      onClick={closeDrawer}
+      sx={{
+        color: 'text.primary',
+        fontFamily: 'Inter, sans-serif',
+        fontSize: '0.875rem',
+        letterSpacing: '0.12em',
+        textTransform: 'uppercase',
+        fontWeight: 500,
+        '&:hover': { color: 'primary.main' },
+      }}
+    >
+      {t(`nav.${item}`)}
+    </Link>
+  ))
 
   return (
-    <>
-      <AppBar
-        position="fixed"
-        elevation={0}
-        sx={{
-          bgcolor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
-          backdropFilter: isScrolled ? 'blur(12px)' : 'none',
-          boxShadow: isScrolled ? '0 1px 4px rgba(0,0,0,0.08)' : 'none',
-          transition: 'all 0.3s ease',
-          color: isScrolled ? 'text.primary' : '#FFFFFF',
-        }}
-      >
-        <Toolbar
-          sx={{
-            height: { xs: 64, md: 72 },
-            px: { xs: 2, md: 4 },
-            justifyContent: 'space-between',
-          }}
-        >
-          {/* Logo */}
-          <Box
-            component="a"
-            href="#"
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              textDecoration: 'none',
-            }}
-          >
-            <Box
-              component="img"
-              src={logo}
-              alt={copy.brand.name}
-              sx={{
-                height: { xs: 44, md: 52 },
-                width: 'auto',
-                filter: isScrolled ? 'none' : 'brightness(0) invert(1)',
-                transition: 'all 0.3s ease',
-              }}
-            />
-          </Box>
+    <AppBar
+      position="fixed"
+      sx={{
+        backgroundColor: scrolled ? alpha('#0A0A0A', 0.92) : 'transparent',
+        backdropFilter: scrolled ? 'blur(8px)' : 'none',
+        borderBottom: scrolled ? `1px solid ${alpha(theme.palette.brand.main, 0.15)}` : '1px solid transparent',
+        transition: 'background-color 0.3s ease, border-color 0.3s ease',
+      }}
+    >
+      <Toolbar sx={{ px: { xs: 2, md: 4 }, minHeight: { xs: 64, md: 80 }, justifyContent: 'space-between' }}>
+        <Link href="#top" sx={{ display: 'flex', alignItems: 'center' }} aria-label="EVO Studio">
+          <EvoLogo size={36} />
+        </Link>
 
-          <Box
-            component="nav"
-            aria-label="Main navigation"
-            sx={{
-              display: { xs: 'none', md: 'flex' },
-              gap: 3,
-              alignItems: 'center',
-            }}
-          >
-            {navItems.map(({ key, label, href }) => (
-              <Typography
-                key={key}
-                component="a"
-                href={href}
-                sx={{
-                  color: 'inherit',
-                  textDecoration: 'none',
-                  fontSize: '0.875rem',
-                  fontWeight: 500,
-                  letterSpacing: '0.02em',
-                  opacity: 0.9,
-                  transition: 'opacity 0.2s',
-                  '&:hover': { opacity: 1 },
-                }}
-              >
-                {label}
-              </Typography>
-            ))}
-          </Box>
+        {isDesktop ? (
+          <Stack direction="row" spacing={4} alignItems="center">
+            {navLinks}
+          </Stack>
+        ) : null}
 
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Button
-              variant="contained"
-              color="primary"
-              href="#book"
+        <Stack direction="row" spacing={1} alignItems="center">
+          <LanguageSwitcher />
+          {isDesktop ? (
+            <BrandButton
+              component="a"
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               size="small"
-              sx={{
-                display: { xs: 'none', sm: 'inline-flex' },
-                px: 3,
-                py: 1,
-                fontSize: '0.8125rem',
-              }}
             >
-              {copy.hero.cta}
-            </Button>
-
+              {t('nav.book')}
+            </BrandButton>
+          ) : (
             <IconButton
-              aria-label="Open navigation menu"
-              aria-expanded={mobileOpen}
-              onClick={() => setMobileOpen(true)}
-              sx={{
-                display: { md: 'none' },
-                color: 'inherit',
-              }}
+              aria-label="menu"
+              onClick={() => setDrawerOpen(true)}
+              sx={{ color: 'text.primary' }}
             >
               <MenuIcon />
             </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
+          )}
+        </Stack>
+      </Toolbar>
 
-      <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
-    </>
+      <Drawer anchor="right" open={drawerOpen} onClose={closeDrawer}>
+        <Box sx={{ width: 280, height: '100%', backgroundColor: 'background.default', p: 3 }}>
+          <Stack direction="row" justifyContent="flex-end">
+            <IconButton onClick={closeDrawer} aria-label="close" sx={{ color: 'text.primary' }}>
+              <CloseIcon />
+            </IconButton>
+          </Stack>
+          <Stack spacing={3} sx={{ mt: 4 }}>
+            {navLinks}
+            <BrandButton
+              component="a"
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              fullWidth
+            >
+              {t('nav.book')}
+            </BrandButton>
+          </Stack>
+        </Box>
+      </Drawer>
+    </AppBar>
   )
 }
