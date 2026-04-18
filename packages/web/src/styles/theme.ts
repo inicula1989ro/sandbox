@@ -91,7 +91,6 @@ export const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        html: { scrollBehavior: 'smooth' },
         body: { backgroundColor: BG_DEFAULT, color: TEXT_PRIMARY },
       },
     },

@@ -37,12 +37,24 @@ export function Header() {
     setDrawerOpen(false)
   }
 
+  function handleNavClick(item: (typeof NAV_ITEMS)[number]) {
+    return (event: React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault()
+      const target = document.getElementById(item)
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        window.history.replaceState(null, '', `#${item}`)
+      }
+      closeDrawer()
+    }
+  }
+
   const navLinks = NAV_ITEMS.map((item) => (
     <Link
       key={item}
       href={`#${item}`}
       underline="none"
-      onClick={closeDrawer}
+      onClick={handleNavClick(item)}
       sx={{
         color: 'text.primary',
         fontFamily: 'Inter, sans-serif',
