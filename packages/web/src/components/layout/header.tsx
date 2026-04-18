@@ -1,13 +1,13 @@
-import MenuIcon from '@mui/icons-material/Menu'
 import CloseIcon from '@mui/icons-material/Close'
+import MenuIcon from '@mui/icons-material/Menu'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import IconButton from '@mui/material/IconButton'
 import Link from '@mui/material/Link'
 import Stack from '@mui/material/Stack'
-import Toolbar from '@mui/material/Toolbar'
 import { alpha, useTheme } from '@mui/material/styles'
+import Toolbar from '@mui/material/Toolbar'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -73,12 +73,12 @@ export function Header() {
         </Link>
 
         {isDesktop ? (
-          <Stack direction="row" spacing={4} alignItems="center">
+          <Stack sx={{ flexDirection: 'row', gap: 4, alignItems: 'center' }}>
             {navLinks}
           </Stack>
         ) : null}
 
-        <Stack direction="row" spacing={1} alignItems="center">
+        <Stack sx={{ flexDirection: 'row', gap: 1, alignItems: 'center' }}>
           <LanguageSwitcher />
           {isDesktop ? (
             <BrandButton
@@ -104,12 +104,12 @@ export function Header() {
 
       <Drawer anchor="right" open={drawerOpen} onClose={closeDrawer}>
         <Box sx={{ width: 280, height: '100%', backgroundColor: 'background.default', p: 3 }}>
-          <Stack direction="row" justifyContent="flex-end">
+          <Stack sx={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
             <IconButton onClick={closeDrawer} aria-label="close" sx={{ color: 'text.primary' }}>
               <CloseIcon />
             </IconButton>
           </Stack>
-          <Stack spacing={3} sx={{ mt: 4 }}>
+          <Stack sx={{ gap: 3, mt: 4 }}>
             {navLinks}
             <BrandButton
               component="a"

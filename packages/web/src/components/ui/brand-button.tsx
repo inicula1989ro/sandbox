@@ -1,18 +1,19 @@
 import Button, { type ButtonProps } from '@mui/material/Button'
-import { forwardRef } from 'react'
+import type { ElementType, ReactNode } from 'react'
 
-export interface BrandButtonProps extends Omit<ButtonProps, 'color' | 'variant'> {
+export type BrandButtonProps = Omit<ButtonProps, 'color' | 'variant'> & {
   variant?: 'primary' | 'outlined'
+  component?: ElementType
+  href?: string
+  target?: string
+  rel?: string
+  children?: ReactNode
 }
 
-export const BrandButton = forwardRef<HTMLButtonElement, BrandButtonProps>(function BrandButton(
-  { variant = 'primary', sx, children, ...rest },
-  ref,
-) {
+export function BrandButton({ variant = 'primary', sx, children, ...rest }: BrandButtonProps) {
   if (variant === 'outlined') {
     return (
       <Button
-        ref={ref}
         variant="outlined"
         color="primary"
         sx={{
@@ -30,10 +31,8 @@ export const BrandButton = forwardRef<HTMLButtonElement, BrandButtonProps>(funct
       </Button>
     )
   }
-
   return (
     <Button
-      ref={ref}
       variant="contained"
       color="primary"
       sx={{
@@ -47,4 +46,4 @@ export const BrandButton = forwardRef<HTMLButtonElement, BrandButtonProps>(funct
       {children}
     </Button>
   )
-})
+}

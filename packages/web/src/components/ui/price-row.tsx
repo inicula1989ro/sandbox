@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
 import { alpha, useTheme } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 
 import { BulletDot } from './bullet-dot'
 

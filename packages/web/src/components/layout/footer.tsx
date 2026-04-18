@@ -4,8 +4,8 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
-import Typography from '@mui/material/Typography'
 import { alpha, useTheme } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 import { useTranslation } from 'react-i18next'
 
 import { EvoLogo } from '@/components/ui'
@@ -24,9 +24,9 @@ export function Footer() {
       }}
     >
       <Container maxWidth="lg">
-        <Stack spacing={3} alignItems="center">
+        <Stack sx={{ gap: 3, alignItems: 'center' }}>
           <EvoLogo size={32} />
-          <Stack direction="row" spacing={1}>
+          <Stack sx={{ flexDirection: 'row', gap: 1 }}>
             <IconButton
               component="a"
               href={INSTAGRAM_URL}
