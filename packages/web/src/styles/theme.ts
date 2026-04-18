@@ -42,6 +42,9 @@ export const theme = createTheme({
       fontWeight: 700,
       letterSpacing: '0.06em',
       textTransform: 'uppercase',
+      fontSize: 'clamp(2rem, 7vw, 3.25rem)',
+      lineHeight: 1.15,
+      wordBreak: 'break-word',
     },
     h3: {
       fontFamily: '"Playfair Display", serif',
@@ -91,7 +94,7 @@ export const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        body: { backgroundColor: BG_DEFAULT, color: TEXT_PRIMARY },
+        body: { backgroundColor: BG_DEFAULT, color: TEXT_PRIMARY, overflowX: 'hidden' },
       },
     },
     MuiButton: {
