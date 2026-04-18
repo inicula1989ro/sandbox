@@ -11,10 +11,16 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@fontsource/cormorant-garamond": "^5.2.11",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/playfair-display": "^5.2.8",
     "@mui/icons-material": "^9.0.0",
     "@mui/material": "^9.0.0",
+    "i18next": "^26.0.5",
+    "i18next-browser-languagedetector": "^8.2.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "react-i18next": "^17.0.4",
     "react-router-dom": "^7.14.1"
   },
   "devDependencies": {
