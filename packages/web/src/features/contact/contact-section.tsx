@@ -56,7 +56,7 @@ export function ContactSection() {
                 <Typography variant="overline" sx={{ color: 'brand.main' }}>
                   {t('contact.phoneLabel')}
                 </Typography>
-                <Link href={PHONE_URL} underline="none" sx={{ color: 'text.primary', display: 'block' }}>
+                <Link href={PHONE_URL} underline="none" sx={{ color: 'text.primary' }}>
                   {t('contact.phone')}
                 </Link>
               </Box>
