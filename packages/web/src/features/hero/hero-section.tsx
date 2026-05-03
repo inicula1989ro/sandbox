@@ -18,15 +18,13 @@ export function HeroSection() {
       id="top"
       sx={{
         position: 'relative',
-        width: '100%',
-        minHeight: { xs: '100svh', md: '100vh' },
+        minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundImage: `linear-gradient(rgba(10,10,10,0.65), rgba(10,10,10,0.85)), url(${HERO_IMAGE_URL})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
         overflow: 'hidden',
       }}
     >
