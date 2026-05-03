@@ -10,38 +10,47 @@ export function EvoLogo({ size = 64, sx }: EvoLogoProps) {
   return (
     <Box
       component="svg"
-      viewBox="0 0 200 96"
-      sx={{ width: size * 2.5, height: size, display: 'block', ...sx }}
+      viewBox="0 0 160 80"
+      sx={{ width: size * 2, height: size, display: 'block', ...sx }}
       xmlns="http://www.w3.org/2000/svg"
     >
       <text
-        x="100"
-        y="60"
-        fontFamily="'Playfair Display', serif"
-        fontSize="58"
+        x="10"
+        y="52"
+        fontFamily="Playfair Display, serif"
+        fontSize="52"
         fontWeight="700"
         fill="#F5F5F5"
-        textAnchor="middle"
-        letterSpacing="0"
+        letterSpacing="2"
       >
-        EVO
+        EV
+      </text>
+      <text
+        x="98"
+        y="52"
+        fontFamily="Playfair Display, serif"
+        fontSize="52"
+        fontWeight="700"
+        fill="#F5F5F5"
+        letterSpacing="2"
+      >
+        O
       </text>
       <path
-        d="M 108 14 Q 128 14 138 32 Q 146 50 130 58 Q 118 62 110 54"
+        d="M 78 8 Q 92 10 102 22 Q 112 34 104 44 Q 96 52 86 44"
         stroke="#E91E63"
-        strokeWidth="3.2"
+        strokeWidth="3"
         fill="none"
         strokeLinecap="round"
       />
       <text
-        x="100"
-        y="86"
+        x="46"
+        y="72"
         fontFamily="Inter, sans-serif"
-        fontSize="10"
+        fontSize="11"
         fontWeight="400"
         fill="#F5F5F5"
-        textAnchor="middle"
-        letterSpacing="7"
+        letterSpacing="6"
       >
         STUDIO
       </text>
