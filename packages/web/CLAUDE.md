@@ -1,45 +1,39 @@
 # @evo/web — Frontend
 
-Vite + React 19 + MUI v9 single-page application for EVO Studio.
+Vite + React 19 single-page application for Evo Studio. Pixel-perfect port of the
+HTML/CSS prototype delivered via the design handoff bundle.
 
-## MUI Theme
+## Design system
 
-- Heading font: Playfair Display (serif)
-- Body font: Cormorant Garamond (serif)
-- UI font: Inter (sans-serif) — buttons, captions, nav
-- Primary: `#E91E63` (accent CTA)
-- Brand: `#E7B5C0` (hero backgrounds, large surfaces)
-- Paper: `#F5E6EA` (secondary backgrounds)
-- Text: `#2B2B2B`
+- **Background:** `--bg #0a0508`, `--bg-2 #120810`, `--surface #1a0d16`
+- **Foreground:** `--fg #f5ecef`, `--fg-dim #c8b5c0`, `--fg-mute #8a7580`
+- **Pink scale:** `--pink #e8308a` (primary), `--pink-bright #ff3d95`, `--pink-deep #b01d6b`
+- **Type scale**
+  - Display: `Cormorant Garamond` (serif)
+  - UI / sans: `Jost`
+  - Script accents: `Great Vibes`
+  - Mono / labels: `JetBrains Mono`
 
-Always use `theme.palette.brand.main`, not hex values directly.
+All tokens live in `src/styles/global.css` as CSS custom properties on `:root`.
+Reference them via `var(--token)` — never hardcode hex values.
 
-## Component Patterns
+## Component conventions
 
-### Feature folders
+- The design uses raw HTML elements + global CSS classes (no MUI, no `sx`).
+- Components live under `src/components/` (shared) and `src/features/` (page sections).
+- Each section receives the active `Translation` as a `t` prop from the App shell.
+- One component per file, kebab-case filename, PascalCase component name, props
+  type colocated and exported.
 
-Each feature under `src/features/` has:
+## i18n
 
-```
-features/hero/
-├── HeroSection.tsx
-├── index.ts          # barrel export
-└── useHeroData.ts    # data hook if needed
-```
-
-### UI components
-
-Atomic components in `src/components/ui/`:
-
-- Wrap MUI components with brand-specific defaults
-- Export from barrel `index.ts`
-
-### Layout components
-
-`src/components/layout/` — Header, Footer, Section wrappers.
+- Three languages: RO is default at `/` (canonical home); RU at `/ru`, EN at `/en`.
+- All copy lives in `src/constants/i18n.ts` keyed by `Lang`.
+- Active language state is held in `App` and switched via the `lang-switch` widget
+  in `Nav`.
 
 ## Assets
 
-- Place images in `src/assets/`
-- Import via module import, not public URL string
-- Brand images from design brief available in project root
+- Brand logo: `src/assets/evo-logo.png` (pre-cropped, transparent background).
+- Service icons: `src/assets/icons/*.png` (line-art masks; coloured via CSS `mask`).
+- Import images via module import, not public URL strings.

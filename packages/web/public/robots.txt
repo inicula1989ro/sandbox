@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://evo-studio.md/sitemap.xml

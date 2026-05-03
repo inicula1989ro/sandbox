@@ -1,70 +1,42 @@
-import Box from '@mui/material/Box'
-import Stack from '@mui/material/Stack'
-import Typography from '@mui/material/Typography'
-import { useTranslation } from 'react-i18next'
+import logoSrc from '@/assets/evo-logo.png'
+import { Waves } from '@/components/waves/waves'
+import type { Translation } from '@/constants/i18n'
 
-import { BrandButton, CornerFlourish, EvoLogo } from '@/components/ui'
-import { BOOKING_URL } from '@/constants/links'
+export interface HeroSectionProps {
+  t: Translation
+}
 
-const HERO_IMAGE_URL =
-  'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=2400&q=80'
-
-export function HeroSection() {
-  const { t } = useTranslation()
-
+export function HeroSection({ t }: HeroSectionProps) {
+  const stats: [string, string][] = [
+    [t.hero.stat_1_v, t.hero.stat_1_l],
+    [t.hero.stat_2_v, t.hero.stat_2_l],
+    [t.hero.stat_3_v, t.hero.stat_3_l],
+  ]
   return (
-    <Box
-      component="section"
-      id="top"
-      sx={{
-        position: 'relative',
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundImage: `linear-gradient(rgba(10,10,10,0.65), rgba(10,10,10,0.85)), url(${HERO_IMAGE_URL})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        overflow: 'hidden',
-      }}
-    >
-      <CornerFlourish corner="tl" size={220} />
-      <CornerFlourish corner="tr" size={220} />
-      <CornerFlourish corner="bl" size={220} />
-      <CornerFlourish corner="br" size={220} />
-
-      <Stack
-        sx={{
-          gap: 4,
-          alignItems: 'center',
-          position: 'relative',
-          zIndex: 1,
-          textAlign: 'center',
-          px: 3,
-        }}
-      >
-        <EvoLogo sx={{ width: { xs: 220, md: 320 }, height: 'auto' }} />
-        <Typography
-          sx={{
-            fontFamily: '"Cormorant Garamond", serif',
-            fontStyle: 'italic',
-            fontSize: { xs: '2.25rem', md: '3.75rem' },
-            color: 'brand.main',
-            lineHeight: 1.1,
-          }}
-        >
-          {t('hero.tagline')}
-        </Typography>
-        <BrandButton
-          component="a"
-          href={BOOKING_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          size="large"
-        >
-          {t('hero.cta')}
-        </BrandButton>
-      </Stack>
-    </Box>
+    <section className="hero" id="top">
+      <div className="hero__bg" />
+      <Waves />
+      <div className="hero__inner">
+        <img className="hero__logo" src={logoSrc} alt="Evo Studio" />
+        <div className="hero__tag">{t.hero.tag}</div>
+        <h1 className="hero__title">
+          {t.hero.title_1} <em>{t.hero.title_em}</em> {t.hero.title_2}
+        </h1>
+        <p className="hero__subtitle">{t.hero.subtitle}</p>
+        <div className="hero__ctas">
+          <a href="#price" className="btn-outline">
+            {t.hero.cta_secondary}
+          </a>
+        </div>
+        <div className="hero__stats">
+          {stats.map(([v, l], i) => (
+            <div key={i} className="hero__stat">
+              <div className="hero__stat-value">{v}</div>
+              <div className="hero__stat-label">{l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }

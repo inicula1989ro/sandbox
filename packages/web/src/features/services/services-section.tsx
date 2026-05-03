@@ -1,68 +1,46 @@
-import BrushIcon from '@mui/icons-material/Brush'
-import ContentCutIcon from '@mui/icons-material/ContentCut'
-import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural'
-import SpaIcon from '@mui/icons-material/Spa'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Stack from '@mui/material/Stack'
-import { alpha, useTheme } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
-import type { ReactNode } from 'react'
-import { useTranslation } from 'react-i18next'
+import type { CSSProperties } from 'react'
 
-import { Section } from '@/components/layout'
-import { SectionHeader } from '@/components/ui'
+import browsIcon from '@/assets/icons/brows.png'
+import hairIcon from '@/assets/icons/hair.png'
+import makeupIcon from '@/assets/icons/makeup.png'
+import nailsIcon from '@/assets/icons/nails.png'
+import { WaveDivider } from '@/components/waves/wave-divider'
+import type { Translation } from '@/constants/i18n'
 
-const CATEGORIES: { key: string; icon: ReactNode }[] = [
-  { key: 'hair', icon: <ContentCutIcon fontSize="large" /> },
-  { key: 'nails', icon: <BrushIcon fontSize="large" /> },
-  { key: 'face', icon: <FaceRetouchingNaturalIcon fontSize="large" /> },
-  { key: 'brows', icon: <VisibilityIcon fontSize="large" /> },
-  { key: 'body', icon: <SpaIcon fontSize="large" /> },
-]
+const slugs = ['nails', 'hair', 'brows', 'makeup'] as const
+const iconUrls = [nailsIcon, hairIcon, browsIcon, makeupIcon]
 
-export function ServicesSection() {
-  const theme = useTheme()
-  const { t } = useTranslation()
+export interface ServicesSectionProps {
+  t: Translation
+}
 
+export function ServicesSection({ t }: ServicesSectionProps) {
   return (
-    <Section id="services">
-      <SectionHeader overline={t('services.overline')} title={t('services.title')} />
-      <Typography sx={{ color: 'text.secondary', textAlign: 'center', mb: 6, maxWidth: 640, mx: 'auto' }}>
-        {t('services.subtitle')}
-      </Typography>
-      <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
-        {CATEGORIES.map(({ key, icon }) => (
-          <Grid key={key} size={{ xs: 12, sm: 6, md: 4, lg: 2.4 }}>
-            <Box
-              sx={{
-                p: 4,
-                height: '100%',
-                backgroundColor: 'background.paper',
-                border: `1px solid ${alpha(theme.palette.brand.main, 0.3)}`,
-                borderRadius: 1,
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  borderColor: alpha(theme.palette.brand.main, 0.8),
-                  transform: 'translateY(-4px)',
-                  boxShadow: `0 0 32px ${alpha(theme.palette.primary.main, 0.15)}`,
-                },
-              }}
-            >
-              <Stack sx={{ gap: 2, alignItems: 'center', textAlign: 'center' }}>
-                <Box sx={{ color: 'primary.main' }}>{icon}</Box>
-                <Typography variant="h5" sx={{ color: 'text.primary' }}>
-                  {t(`services.items.${key}.title`)}
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  {t(`services.items.${key}.description`)}
-                </Typography>
-              </Stack>
-            </Box>
-          </Grid>
-        ))}
-      </Grid>
-    </Section>
+    <section id="services" className="services">
+      <WaveDivider position="top" />
+      <div className="section-label">{t.services.label}</div>
+      <h2 className="section-title">
+        {t.services.title_1} <em>{t.services.title_em}</em>
+      </h2>
+      <p className="section-intro">{t.services.intro}</p>
+      <div className="services__grid">
+        {t.services.items.map((item, i) => {
+          const slug = slugs[i]
+          const iconUrl = iconUrls[i]
+          const iconStyle = { '--ico-url': `url(${iconUrl})` } as CSSProperties
+          return (
+            <a href="#price" key={i} className={`service-card service-card--${slug} ico-set-IMG`}>
+              <div className="service-card__num">/ {item.num}</div>
+              <div className="service-card__icon">
+                <span className="img-icon" style={iconStyle} />
+              </div>
+              <h3 className="service-card__title">{item.title}</h3>
+              <p className="service-card__desc">{item.desc}</p>
+              <span className="service-card__link">{t.services.more}</span>
+            </a>
+          )
+        })}
+      </div>
+    </section>
   )
 }

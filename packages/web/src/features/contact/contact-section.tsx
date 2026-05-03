@@ -1,122 +1,104 @@
-import FacebookIcon from '@mui/icons-material/Facebook'
-import InstagramIcon from '@mui/icons-material/Instagram'
-import PhoneIcon from '@mui/icons-material/Phone'
-import PlaceIcon from '@mui/icons-material/Place'
-import ScheduleIcon from '@mui/icons-material/Schedule'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import IconButton from '@mui/material/IconButton'
-import Link from '@mui/material/Link'
-import Stack from '@mui/material/Stack'
-import { alpha, useTheme } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
-import { useTranslation } from 'react-i18next'
-
-import { Section } from '@/components/layout'
-import { BrandButton, SectionHeader } from '@/components/ui'
 import {
-  BOOKING_URL,
-  FACEBOOK_URL,
-  INSTAGRAM_URL,
-  MAP_EMBED_SRC,
-  PHONE_URL,
-} from '@/constants/links'
+  FacebookIcon,
+  InstagramIcon,
+  PhoneIcon,
+  TelegramIcon,
+  WhatsAppIcon,
+} from '@/components/icons/social-icons'
+import type { Translation } from '@/constants/i18n'
 
-export function ContactSection() {
-  const theme = useTheme()
-  const { t } = useTranslation()
+export interface ContactSectionProps {
+  t: Translation
+}
 
+export function ContactSection({ t }: ContactSectionProps) {
   return (
-    <Section id="contact">
-      <SectionHeader overline={t('contact.overline')} title={t('contact.title')} />
-      <Grid container spacing={6} sx={{ alignItems: 'stretch' }}>
-        <Grid size={{ xs: 12, md: 6 }}>
-          <Stack sx={{ gap: 4, height: '100%', justifyContent: 'center' }}>
-            <Stack sx={{ flexDirection: 'row', gap: 2, alignItems: 'flex-start' }}>
-              <PlaceIcon sx={{ color: 'primary.main' }} />
-              <Box>
-                <Typography variant="overline" sx={{ color: 'brand.main' }}>
-                  {t('contact.addressLabel')}
-                </Typography>
-                <Typography sx={{ color: 'text.primary' }}>{t('contact.address')}</Typography>
-              </Box>
-            </Stack>
-            <Stack sx={{ flexDirection: 'row', gap: 2, alignItems: 'flex-start' }}>
-              <ScheduleIcon sx={{ color: 'primary.main' }} />
-              <Box>
-                <Typography variant="overline" sx={{ color: 'brand.main' }}>
-                  {t('contact.hoursLabel')}
-                </Typography>
-                <Typography sx={{ color: 'text.primary' }}>{t('contact.hours')}</Typography>
-              </Box>
-            </Stack>
-            <Stack sx={{ flexDirection: 'row', gap: 2, alignItems: 'flex-start' }}>
-              <PhoneIcon sx={{ color: 'primary.main' }} />
-              <Box>
-                <Typography variant="overline" sx={{ color: 'brand.main' }}>
-                  {t('contact.phoneLabel')}
-                </Typography>
-                <Link href={PHONE_URL} underline="none" sx={{ color: 'text.primary' }}>
-                  {t('contact.phone')}
-                </Link>
-              </Box>
-            </Stack>
-            <Box>
-              <Typography variant="overline" sx={{ color: 'brand.main', display: 'block', mb: 1 }}>
-                {t('contact.socialLabel')}
-              </Typography>
-              <Stack sx={{ flexDirection: 'row', gap: 1 }}>
-                <IconButton
-                  component="a"
-                  href={INSTAGRAM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  sx={{ color: 'brand.main', '&:hover': { color: 'primary.main' } }}
-                >
-                  <InstagramIcon />
-                </IconButton>
-                <IconButton
-                  component="a"
-                  href={FACEBOOK_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  sx={{ color: 'brand.main', '&:hover': { color: 'primary.main' } }}
-                >
-                  <FacebookIcon />
-                </IconButton>
-              </Stack>
-            </Box>
-            <BrandButton
-              component="a"
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              size="large"
-              sx={{ alignSelf: 'flex-start' }}
-            >
-              {t('contact.cta')}
-            </BrandButton>
-          </Stack>
-        </Grid>
-        <Grid size={{ xs: 12, md: 6 }}>
-          <Box
-            component="iframe"
-            title="map"
-            src={MAP_EMBED_SRC}
-            sx={{
-              width: '100%',
-              height: { xs: 320, md: '100%' },
-              minHeight: 320,
-              border: `1px solid ${alpha(theme.palette.brand.main, 0.2)}`,
-              filter: 'grayscale(0.6) invert(0.88) hue-rotate(180deg)',
-            }}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        </Grid>
-      </Grid>
-    </Section>
+    <section id="contact" className="contact">
+      <h2 className="section-title" style={{ textAlign: 'center' }}>
+        <em>{t.contact.title}</em>
+      </h2>
+      <p className="section-intro" style={{ margin: '1.5rem auto 2.5rem', textAlign: 'center' }}>
+        {t.contact.sub}
+      </p>
+      <div className="socials">
+        <a
+          href="https://www.instagram.com/evostudiomd"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="social-link"
+          aria-label="Instagram"
+        >
+          <InstagramIcon />
+        </a>
+        <a
+          href="https://www.facebook.com/evostudio.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="social-link"
+          aria-label="Facebook"
+        >
+          <FacebookIcon />
+        </a>
+        <a
+          href="https://wa.me/37378367347"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="social-link"
+          aria-label="WhatsApp"
+        >
+          <WhatsAppIcon />
+        </a>
+        <a
+          href="https://t.me/evostudiomd"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="social-link"
+          aria-label="Telegram"
+        >
+          <TelegramIcon />
+        </a>
+        <a href="tel:+37378367347" className="social-link" aria-label="Phone">
+          <PhoneIcon />
+        </a>
+      </div>
+
+      <div className="contact__row">
+        <iframe
+          className="contact__map"
+          src="https://maps.google.com/maps?q=Strada%20Nicolae%20Starostenco%2025%20Chi%C8%99in%C4%83u&z=16&output=embed"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title={t.contact.map_label}
+        />
+        <div className="contact__info">
+          <h3>{t.booking.info_title}</h3>
+          <div className="info-block">
+            <strong>{t.booking.hours_h}</strong>
+            <p style={{ whiteSpace: 'pre-line' }}>{t.booking.hours}</p>
+          </div>
+          <div className="info-block">
+            <strong>{t.booking.address_h}</strong>
+            <p style={{ whiteSpace: 'pre-line' }}>{t.booking.address}</p>
+          </div>
+          <div className="info-block">
+            <strong>{t.booking.phone_h}</strong>
+            <p>
+              <a href="tel:+37378367347">{t.booking.phone_v}</a>
+            </p>
+          </div>
+          <div className="info-block">
+            <strong>{t.booking.email_h}</strong>
+            <p>
+              <a href="mailto:hello@evostudio.md">{t.booking.email_v}</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <footer className="footer">
+        <span>{t.contact.rights}</span>
+        <span>hello@evostudio.md · +373 78 367 347</span>
+      </footer>
+    </section>
   )
 }

@@ -1,0 +1,178 @@
+import type { Translation } from '@/constants/i18n'
+
+export const en: Translation = {
+  seo: {
+    title: 'Evo Studio — Beauty Salon in Chișinău',
+    description:
+      'Evo Studio beauty salon in Chișinău: brows, lashes, nails, hair, and makeup. Online booking, certified masters, elegant atmosphere.',
+    ogTitle: 'Evo Studio — elegance and care in every detail',
+  },
+  nav: {
+    services: 'Services',
+    prices: 'Price',
+    about: 'About',
+    team: 'Team',
+    contact: 'Contact',
+    book: 'Book now',
+  },
+  hero: {
+    tag: 'Beauty is in the details',
+    title_1: 'A studio of',
+    title_em: 'flawless',
+    title_2: 'care',
+    subtitle:
+      'A place where every detail is designed for your beauty. Brows, lashes, nails, hair and makeup — with a signature touch and full attention to every client.',
+    cta_primary: 'Book a visit',
+    cta_secondary: 'See prices',
+    stat_1_v: '7+',
+    stat_1_l: 'years in business',
+    stat_2_v: '15 000+',
+    stat_2_l: 'happy clients',
+    stat_3_v: '24',
+    stat_3_l: 'service types',
+  },
+  services: {
+    label: 'Our services',
+    title_1: 'Five directions,',
+    title_em: 'one space',
+    intro:
+      "From manicure to makeup — we've gathered the key beauty directions in one studio so you can get full care in a unified aesthetic.",
+    items: [
+      {
+        num: '01',
+        title: 'Nails',
+        desc: 'Manicure, pedicure, extensions, design. Sterile instruments, premium gel-polish brands.',
+      },
+      {
+        num: '02',
+        title: 'Hair',
+        desc: 'Cuts, colouring, botox, keratin, styling. Gentle restoration and bold transformations.',
+      },
+      {
+        num: '03',
+        title: 'Brows & Lashes',
+        desc: 'Tinting, lamination, shaping, extensions, botox. Your perfect gaze — our craft.',
+      },
+      {
+        num: '04',
+        title: 'Makeup',
+        desc: 'Daytime, evening, bridal, photoshoot. Looks that stay memorable.',
+      },
+    ],
+    more: 'Details',
+  },
+  price: {
+    label: 'Price list',
+    title_1: 'Prices and',
+    title_em: 'services',
+    intro:
+      'Current prices by category. All amounts are in Moldovan Lei (MDL). Exact price for your procedure is confirmed at consultation.',
+    tabs: ['Nails', 'Hair', 'Brows & Lashes', 'Makeup'],
+    categories: {
+      nails: [
+        { name: 'Classic manicure', desc: 'with gel polish', price: '000' },
+        { name: 'Machine manicure', desc: 'combined technique', price: '000' },
+        { name: 'Combined pedicure', desc: 'with coating', price: '000' },
+        { name: 'Nail extensions', desc: 'gel / acrylic, one hand', price: '000' },
+        { name: 'Coating removal', desc: 'without follow-up manicure', price: '000' },
+        { name: 'Single nail design', desc: 'crystals or hand-painted', price: '00' },
+      ],
+      hair: [
+        { name: "Women's haircut", desc: 'with styling', price: '000' },
+        { name: 'Single-tone colouring', desc: 'short hair', price: '000' },
+        { name: 'Complex colouring', desc: 'airtouch / balayage / shatush', price: '0 000' },
+        { name: 'Hair botox', desc: 'deep restoration', price: '000' },
+        { name: 'Keratin straightening', desc: 'up to shoulders', price: '0 000' },
+        { name: 'Evening styling', desc: 'curls / bun / braids', price: '000' },
+      ],
+      brows_lashes: [
+        { name: 'Tinting', desc: 'dye/henna + shaping', price: '300' },
+        { name: 'Lamination + shaping + tinting', desc: '', price: '400' },
+        { name: 'Lamination + shaping', desc: '', price: '350' },
+        { name: 'Shaping', desc: 'tweezers / wax', price: '150' },
+        { name: 'SPA / brow botox', desc: '', price: '100' },
+        { name: 'Facial hair removal', desc: 'one area', price: '50' },
+        { name: 'Classic extensions', desc: '1D volume', price: '000' },
+        { name: '2D / 3D extensions', desc: 'dramatic volume', price: '000' },
+        { name: 'Lash lamination', desc: 'with tinting', price: '000' },
+        { name: 'Lash botox', desc: 'nourishment and care', price: '000' },
+        { name: 'Extension removal', desc: '', price: '00' },
+      ],
+      makeup: [
+        { name: 'Daytime makeup', desc: 'light, natural', price: '000' },
+        { name: 'Evening makeup', desc: 'accents and liner', price: '000' },
+        { name: 'Bridal makeup', desc: 'with trial', price: '0 000' },
+        { name: 'Photoshoot makeup', desc: 'long-lasting, for lights', price: '000' },
+        { name: 'Self-makeup lesson', desc: 'individual class', price: '000' },
+      ],
+    },
+    footnote: 'Prices are indicative and will be updated. Final cost is confirmed at consultation.',
+    unit: 'MDL',
+  },
+  about: {
+    label: 'About the studio',
+    title_1: 'Evo —',
+    title_em: 'the evolution',
+    title_2: 'of your beauty',
+    p1: "We're a small authored studio where beauty procedures become a ritual of care. Every workstation is designed around client comfort: soft light, calm music, sterile tools, professional cosmetics.",
+    p2: "Our approach — individual consultations, honest recommendations and a result you're proud to show. We work with your natural beauty, not against it.",
+    values: [
+      { h: 'Individual', p: 'No templates — a look designed for you' },
+      { h: 'Sterile', p: 'Single-use materials, autoclave, dry heat' },
+      { h: 'Premium', p: 'Only tested professional brands' },
+      { h: 'Heartfelt', p: 'You leave rested, not tired' },
+    ],
+  },
+  team: {
+    label: 'Our masters',
+    title_1: 'A team',
+    title_em: 'you trust',
+    title_2: '',
+    intro:
+      'Every Evo master is a certified specialist with years of experience and love for their craft.',
+    members: [
+      {
+        name: 'Victoria',
+        role: 'Founder / brow artist',
+        bio: 'Lead brow and lash master. 7+ years in the beauty industry.',
+        tags: ['Brows', 'Lashes'],
+      },
+      {
+        name: 'Anna',
+        role: 'Nail artist',
+        bio: 'Manicure, pedicure, design. International nail-art certificates.',
+        tags: ['Manicure', 'Design'],
+      },
+      {
+        name: 'Maria',
+        role: 'Hair stylist',
+        bio: 'Colourist, expert in complex colouring and restoration.',
+        tags: ['Colour', 'Cuts'],
+      },
+      {
+        name: 'Elena',
+        role: 'Makeup artist',
+        bio: 'Bridal and evening looks, makeup for photo and video.',
+        tags: ['Bridal', 'Evening'],
+      },
+    ],
+  },
+  booking: {
+    info_title: 'Or message us directly',
+    hours_h: 'Working hours',
+    hours: 'Mon–Sat: 09:00–20:00\nSunday: 10:00–18:00',
+    address_h: 'Address',
+    address: 'Strada Nicolae Starostenco 25, Chișinău\nMD-2001, Moldova',
+    phone_h: 'Phone',
+    phone_v: '+373 78 367 347',
+    email_h: 'Email',
+    email_v: 'hello@evostudio.md',
+  },
+  contact: {
+    title: "We'd love to see you",
+    sub: "Follow us on Instagram — that's where inspiration lives and new services are announced first.",
+    map_label: 'Interactive map',
+    rights: '© 2026 Evo Studio. All rights reserved.',
+  },
+  intro_tagline: 'Beauty is in the details',
+}

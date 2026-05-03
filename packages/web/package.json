@@ -5,22 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "build": "tsc -b && vite build && node scripts/prerender.mjs",
+    "preview": "vite preview",
+    "lint": "yarn run -T eslint .",
+    "lint:fix": "yarn run -T eslint . --fix",
+    "typecheck": "tsc -b",
+    "format": "yarn run -T prettier --write .",
+    "format:check": "yarn run -T prettier --check .",
+    "build:icons": "node scripts/generate-favicons.mjs",
+    "build:og": "node scripts/generate-og-image.mjs",
+    "build:assets": "yarn build:icons && yarn build:og"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
-    "@fontsource/cormorant-garamond": "^5.2.11",
-    "@fontsource/inter": "^5.2.8",
-    "@fontsource/playfair-display": "^5.2.8",
-    "@mui/icons-material": "^9.0.0",
-    "@mui/material": "^9.0.0",
-    "i18next": "^26.0.5",
-    "i18next-browser-languagedetector": "^8.2.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-i18next": "^17.0.4",
     "react-router-dom": "^7.14.1"
   },
   "devDependencies": {
@@ -28,6 +26,8 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
+    "puppeteer": "^23",
+    "sharp": "^0.33",
     "typescript": "~6.0.2",
     "vite": "^8.0.4"
   }

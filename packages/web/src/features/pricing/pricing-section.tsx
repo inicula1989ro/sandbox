@@ -1,81 +1,52 @@
-import Box from '@mui/material/Box'
-import Stack from '@mui/material/Stack'
-import { alpha, useTheme } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
-import { Section } from '@/components/layout'
-import { BrandButton, CornerFlourish, HeartDivider, SectionHeader } from '@/components/ui'
-import { BOOKING_URL } from '@/constants/links'
+import type { PriceCategoryKey, Translation } from '@/constants/i18n'
 
-import { PricingAccordion } from './pricing-accordion'
+const cats: PriceCategoryKey[] = ['nails', 'hair', 'brows_lashes', 'makeup']
 
-type CategoryKey = 'brows' | 'hair' | 'nails' | 'face' | 'body'
+export interface PricingSectionProps {
+  t: Translation
+}
 
-export function PricingSection() {
-  const theme = useTheme()
-  const { t } = useTranslation()
-  const [activeCategory, setActiveCategory] = useState<CategoryKey>('brows')
+export function PricingSection({ t }: PricingSectionProps) {
+  const [active, setActive] = useState<PriceCategoryKey>('nails')
+  const rows = t.price.categories[active] ?? []
 
   return (
-    <Section id="pricing" maxWidth="md">
-      <Box
-        sx={{
-          position: 'relative',
-          border: `1px solid ${alpha(theme.palette.brand.main, 0.25)}`,
-          backgroundColor: alpha('#000000', 0.4),
-          px: { xs: 3, md: 8 },
-          py: { xs: 6, md: 10 },
-          overflow: 'hidden',
-        }}
-      >
-        <CornerFlourish corner="tl" size={140} />
-        <CornerFlourish corner="tr" size={140} />
-        <CornerFlourish corner="bl" size={140} />
-        <CornerFlourish corner="br" size={140} />
-
-        <Stack sx={{ gap: 1, alignItems: 'center', mb: 4, position: 'relative', zIndex: 1 }}>
-          <Typography variant="overline" sx={{ color: 'brand.main' }}>
-            {t('pricing.overline')}
-          </Typography>
-          <Typography variant="h2" sx={{ color: 'text.primary' }}>
-            {t('pricing.title')}
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: '"Cormorant Garamond", serif',
-              fontStyle: 'italic',
-              fontSize: { xs: '2rem', md: '2.75rem' },
-              color: 'brand.main',
-              lineHeight: 1,
-              mt: 1,
-            }}
+    <section id="price" className="price">
+      <div className="section-label">{t.price.label}</div>
+      <h2 className="section-title">
+        {t.price.title_1} <em>{t.price.title_em}</em>
+      </h2>
+      <p className="section-intro">{t.price.intro}</p>
+      <div className="price__tabs" role="tablist">
+        {cats.map((cat, i) => (
+          <button
+            type="button"
+            key={cat}
+            className={`price__tab ${active === cat ? 'active' : ''}`}
+            onClick={() => setActive(cat)}
           >
-            {t(`pricing.subtitleByCategory.${activeCategory}`)}
-          </Typography>
-        </Stack>
-
-        <SectionHeader title="" sx={{ mb: 0, display: 'none' }} />
-
-        <Box sx={{ position: 'relative', zIndex: 1 }}>
-          <PricingAccordion onCategoryChange={(key) => setActiveCategory(key as CategoryKey)} />
-        </Box>
-
-        <HeartDivider />
-
-        <Stack sx={{ flexDirection: 'row', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
-          <BrandButton
-            component="a"
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            size="large"
-          >
-            {t('pricing.cta')}
-          </BrandButton>
-        </Stack>
-      </Box>
-    </Section>
+            {t.price.tabs[i]}
+          </button>
+        ))}
+      </div>
+      <div className="price__list">
+        {rows.map((r, i) => (
+          <div key={i} className="price__row">
+            <span className="price__bullet" aria-hidden />
+            <div className="price__name">
+              {r.name}
+              {r.desc ? <small>{r.desc}</small> : null}
+            </div>
+            <div className="price__amount">
+              {r.price}
+              <small>{t.price.unit}</small>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p className="price__footnote">{t.price.footnote}</p>
+    </section>
   )
 }
