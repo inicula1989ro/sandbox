@@ -70,5 +70,5 @@ packages/web/src/
 ├── lib/          # Utilities
 ├── styles/       # MUI theme, global styles
 ├── types/        # Shared TypeScript types
-└── constants/    # Copy (UI strings), config
+└── constants/    # Copy (UI strings)
 ```
